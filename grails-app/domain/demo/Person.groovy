@@ -1,8 +1,14 @@
 package demo
 
-import groovy.transform.CompileStatic
+import grails.compiler.GrailsCompileStatic
+import grails.gorm.MultiTenant
 
-@CompileStatic
-class Person {
+@GrailsCompileStatic
+class Person implements MultiTenant<Person> {
     String name
+    String owner
+
+    static mapping = {
+        tenantId name:'owner'
+    }
 }
